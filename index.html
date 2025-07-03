@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chappati Wala Atta - Order Now</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #002b00, #000);
+      color: #fff;
+      overflow-x: hidden;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+    .product-img {
+      flex: 1;
+      min-width: 300px;
+      text-align: center;
+      padding: 20px;
+    }
+    .product-img img {
+      max-width: 300px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+    }
+    .order-box {
+      flex: 1;
+      min-width: 320px;
+      max-width: 500px;
+      margin: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 30px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 20px rgba(218, 165, 32, 0.2);
+    }
+    .order-box h1 {
+      color: gold;
+      font-size: 2em;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .order-box label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    .order-box input,
+    .order-box select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+    .order-box button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 14px;
+      font-size: 1.1em;
+      background-color: #228B22;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .order-box button:hover {
+      background-color: #1a661a;
+    }
+    .features {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .features h2 {
+      color: gold;
+      font-size: 2em;
+      margin-bottom: 30px;
+    }
+    .features-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border: 1px solid gold;
+      border-radius: 12px;
+      width: 220px;
+      text-align: center;
+    }
+    .feature-card span {
+      font-size: 2em;
+      display: block;
+      margin-bottom: 10px;
+      color: gold;
+    }
+    .footer {
+      background: #000;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="product-img">
+      <img src="chappati_1.jpeg" alt="Chappati Wala Atta">
+    </div>
+    <div class="order-box">
+      <h1>Order Chappati Wala Atta</h1>
+      <form id="orderForm">
+        <label for="quantity">Select Quantity</label>
+        <select id="quantity" required>
+          <option value="">Choose...</option>
+          <option value="1kg">1kg - £4.00</option>
+          <option value="2kg">2kg - £7.50</option>
+          <option value="5kg">5kg - £17.00</option>
+        </select>
+
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required>
+
+        <label for="address">Delivery Address</label>
+        <input type="text" id="address" required>
+
+        <button type="submit">Proceed to Payment</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="features">
+    <h2>Why Choose Chappati Wala?</h2>
+    <div class="features-grid">
+      <div class="feature-card"><span>✅</span>Gluten Free Certified</div>
+      <div class="feature-card"><span>🇬🇧</span>Made in Britain</div>
+      <div class="feature-card"><span>🕌</span>Halal Certified</div>
+      <div class="feature-card"><span>🌾</span>100% Chakki Fresh</div>
+      <div class="feature-card"><span>📦</span>Delivery Based on Location</div>
+      <div class="feature-card"><span>💳</span>Secure Online Checkout</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 Chappati Wala Atta | All rights reserved | chappatiwalla@gmail.com
+  </div>
+
+  <script>
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const order = {
+        quantity: document.getElementById('quantity').value,
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        address: document.getElementById('address').value
+      };
+      localStorage.setItem('order', JSON.stringify(order));
+      window.location.href = 'payment.html';
+    });
+  </script>
+</body>
+</html>
