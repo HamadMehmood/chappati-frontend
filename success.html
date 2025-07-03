@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Success - Chappati Wala Atta</title>
+  <style>
+    body {
+      background: #f2fff2;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .box {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 500px;
+    }
+    h1 {
+      color: #228B22;
+      font-size: 2em;
+    }
+    p {
+      font-size: 1.1em;
+      margin-top: 10px;
+      color: #333;
+    }
+    .loading {
+      margin-top: 20px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>✅ Thank You!</h1>
+    <p>Your payment was successful and your order is being saved.</p>
+    <p class="loading">Saving order to database...</p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const order = {
+      name: params.get('name'),
+      email: params.get('email'),
+      address: params.get('address'),
+      quantity: params.get('quantity'),
+      amount: parseFloat(params.get('amount'))
+    };
+
+    fetch("https://your-backend-url.onrender.com/api/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(order)
+    })
+      .then(res => res.json())
+      .then(data => {
+        document.querySelector('.loading').textContent = '✅ Order saved successfully!';
+      })
+      .catch(err => {
+        console.error(err);
+        document.querySelector('.loading').textContent = '⚠️ Failed to save order. Please contact support.';
+      });
+  </script>
+</body>
+</html>
